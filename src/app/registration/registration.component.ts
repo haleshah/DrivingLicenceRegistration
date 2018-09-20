@@ -5,10 +5,8 @@ class Registration {
   constructor(
     public firstName: string = '',
     public lastName: string = '',
-    public dob: NgbDateStruct = null,
-    public email: string = '',
-    public password: string = '',
-    public country: string = 'Select country'
+    public doa: NgbDateStruct = null,
+    public status: string = 'Select Application status'
   ) {}
 }
 
@@ -28,13 +26,12 @@ export class RegistrationComponent implements OnInit {
   submitType: string = 'Save';
   // It maintains table row index based on selection.
   selectedRow: number;
-  // It maintains Array of countries.
-  countries: string[] = ['US', 'UK', 'India', 'UAE'];
+  // It maintains Array of Status.
+  statusList: string[] = ['LLR', 'DL'];
   constructor() {
     // Add default registration data.
-    this.registrations.push(new Registration('Johan', 'Peter', {year: 1980, month: 5, day: 12}, 'johan@gmail.com', 'johan123', 'UK'));
-    this.registrations.push(new Registration('Mohamed', 'Tariq', {year: 1975, month: 12, day: 3}, 'tariq@gmail.com', 'tariq123', 'UAE'));
-    this.registrations.push(new Registration('Nirmal', 'Kumar', {year: 1970, month: 7, day: 25}, 'nirmal@gmail.com', 'nirmal123', 'India'));
+    this.registrations.push(new Registration('Halesh', 'A H', {year: 2018, month: 6, day: 1}, 'DL'));
+    this.registrations.push(new Registration('Manjunath', 'A H', {year: 2018, month: 8, day: 10}, 'LLR'));
   }
 
   ngOnInit() {}
@@ -58,10 +55,8 @@ export class RegistrationComponent implements OnInit {
       // Update the existing properties values based on model.
       this.registrations[this.selectedRow].firstName = this.regModel.firstName;
       this.registrations[this.selectedRow].lastName = this.regModel.lastName;
-      this.registrations[this.selectedRow].dob = this.regModel.dob;
-      this.registrations[this.selectedRow].email = this.regModel.email;
-      this.registrations[this.selectedRow].password = this.regModel.password;
-      this.registrations[this.selectedRow].country = this.regModel.country;
+      this.registrations[this.selectedRow].doa = this.regModel.doa;
+      this.registrations[this.selectedRow].status = this.regModel.status;
     }
     // Hide registration entry section.
     this.showNew = false;
@@ -94,9 +89,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   // This method associate to Bootstrap dropdown selection change.
-  onChangeCountry(country: string) {
-    // Assign corresponding selected country to model.
-    this.regModel.country = country;
+  onChangeStatus(status: string) {
+    // Assign corresponding selected status to model.
+    this.regModel.status = status;
   }
 
 }
